@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import WalletButton from "./WalletButton";
 
 export default function Navbar() {
@@ -6,16 +7,16 @@ export default function Navbar() {
     <nav className="bg-gray-800 p-4 shadow-lg">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <a href="/">
+        <Link href="/">
           <Image src="/logo.png" alt="XLIFE Logo" width={50} height={50} />
-        </a>
+        </Link>
 
         {/* Navigation Links */}
         <ul className="flex space-x-6 text-white">
-          <li><a href="/" className="hover:text-gray-300">Home</a></li>
-          <li><a href="/about" className="hover:text-gray-300">About</a></li>
-          <li><a href="/wallet" className="hover:text-gray-300">Wallet</a></li>
-          <li><a href="/contact" className="hover:text-gray-300">Contact</a></li>
+          <li><Link href="/" className="hover:text-gray-300">Home</Link></li>
+          <li><Link href="/about" className="hover:text-gray-300">About</Link></li>
+          <li><Link href="/wallet" className="hover:text-gray-300">Wallet</Link></li>
+          <li><Link href="/contact" className="hover:text-gray-300">Contact</Link></li>
         </ul>
 
         {/* Wallet Button */}

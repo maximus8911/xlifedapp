@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ethers } from "ethers";
 
 export default function WalletButton() {
@@ -7,7 +7,7 @@ export default function WalletButton() {
   const [bnbBalance, setBnbBalance] = useState(null);
   const [xlifeBalance, setXlifeBalance] = useState(null);
 
-  // XLIFE Token Contract Address (Updated)
+  // XLIFE Token Contract Address
   const xlifeTokenAddress = "0x06ae1c000458D646184676c35C8ccdbB000bb6c7";
 
   // ABI for XLIFE Token (Only balanceOf function)
@@ -16,7 +16,7 @@ export default function WalletButton() {
   ];
 
   // Function to check if MetaMask is installed and connected
-  const checkMetaMask = async () => {
+  const checkMetaMask = useCallback(async () => {
     if (typeof window.ethereum !== "undefined") {
       try {
         const provider = new ethers.BrowserProvider(window.ethereum);
@@ -29,7 +29,7 @@ export default function WalletButton() {
         console.error("Error checking MetaMask:", error);
       }
     }
-  };
+  }, []);
 
   // Function to fetch balances
   const getBalances = async (account, provider) => {
@@ -74,7 +74,7 @@ export default function WalletButton() {
   // Check wallet connection on component mount
   useEffect(() => {
     checkMetaMask();
-  }, []);
+  }, [checkMetaMask]);
 
   return (
     <div className="flex flex-col items-center space-y-2">
